@@ -17,17 +17,18 @@
     "build": "cross-env NODE_ENV=production yarn babel src --out-dir dist; cp -r src/views dist/",
     "start": "cross-env NODE_ENV=production yarn babel-node src/server",
     "postinstall": "cp .env.sample .env",
+    "prepare": "yarn husky install",
     "format": "yarn prettier . -w",
     "gen": "yarn babel-node src/swagger",
     "gen:w": "yarn babel-node src/swagger --watch"
   },
   "repository": "git@github.com:codevware/formbuilder-api.git",
-  "author": "CodeContinent <codecontinent@gmail.com>",
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codecontinent/express/issues"
+    "url": "https://github.com/codevware/formbuilder-api/issues"
   },
-  "homepage": "https://github.com/codecontinent/express",
+  "homepage": "https://github.com/codevware/formbuilder-api",
   "dependencies": {
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
