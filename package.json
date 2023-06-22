@@ -1,7 +1,7 @@
 {
-  "name": "@cc/express",
+  "name": "form_builder_api",
   "version": "1.0.0",
-  "description": "expressjs-boilerplate",
+  "description": "form_builder_api",
   "engines": {
     "node": ">=16.x"
   },
@@ -18,7 +18,7 @@
     "gen": "yarn babel-node src/swagger",
     "gen:w": "yarn babel-node src/swagger --watch"
   },
-  "repository": "git@github.com:codecontinent/express.git",
+  "repository": "git@github.com:codevware/formbuilder-api.git",
   "author": "CodeContinent <codecontinent@gmail.com>",
   "license": "MIT",
   "bugs": {
