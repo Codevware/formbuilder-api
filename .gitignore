@@ -14,9 +14,7 @@ build/
 # hooks
 .husky/*
 !.husky/pre-commit
-!.husky/post-commit
-!.husky/pre-push
-!.husky/post-push
+
 
 # others & misc.
 .vscode/*

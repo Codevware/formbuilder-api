@@ -1,7 +1,7 @@
 node_modules/
-*.md
 LICENSE
 *-lock.json
 yarn.lock
 dist/
 build/
+*docker*
