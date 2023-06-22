@@ -5,48 +5,62 @@
 [**Express.js boilerplate**](https://github.com/codecontinent/express) is our official recommended approach for writing our express.js application. It wraps around the our express.js boilerplate core and helping you to start building your backend application faster like you are using a minimal oragnized framework. It's not an alternative to any popular nodejs framework like `NestJs`, `NextJs`, `Koa`, etc. But you can save so much time to use it for your express-js app. While there are many people loves the `express.js` still and want to use it for porfolio, hobby, side-projects, etc. Mostly, the newbie `MERN-stack`, `React`, `MEAN-stack` or `MEVN-stack` developers can be adopt it easily. It can be a readymate and easy to understand solution to them.
 
 First, you need to clone this repository or follow `degit` command.
+
 ```
 git clone git@github.com:codecontinent/express.git
 ```
+
 or
+
 ```
 npx degit github:codecontinent/express
 ```
+
 > Note: We have used node-version `16 (LTS)`. Recommened to use: Node v16/v18 LTS.
 
 Install dependencies
+
 ```
 yarn install
 ```
 
 ## Documentation
+
 Initially we have made some example structures & APIs to give you the idea about developing a pretty much good `REST-APIs`. We have used `mongoose` for using MongoDB database for now. Later, we are planning to implement more scopes (i.e. Prisma ORM). Let's read some primary documentation to understand this boilerplate.
 
 #### \# Setup Database
+
 You will have a `.env.sample` file as well as `.env` file copied from the sample file during the post-installation. You can edit `.env` file as you need.
+
 ```env
 # Environment variables
 PORT=4000 # default port
 DATABASE_URL=mongodb://127.0.0.1:27017/express # database for development or production
 TEST_DATABASE_URL=mongodb://127.0.0.1:27017/express-tdd # database for only test-runner
 ```
+
 > Remember: When you want to test, you must use a separate database in case of not lossing your data from main database.
 
 #### \# Write APIs
-You can find a directory called **services** in `src/services`. This is the folder to make or group your api-service in a single directory. As an example, you can see our `src/services/todo` and explore them. After creating them, you have to register them in the `src/routes/api.routes.js` file. 
+
+You can find a directory called **services** in `src/services`. This is the folder to make or group your api-service in a single directory. As an example, you can see our `src/services/todo` and explore them. After creating them, you have to register them in the `src/routes/api.routes.js` file.
+
 ```js
 /// --------------------------------------------------------///
 apiRouter.use('/todo', todoAPI); // already there
 apiRouter.use('/your-api', yourApiController); // your new api-service
 /// --------------------------------------------------------///
 ```
+
 Also, we recommended (optional) to use `src/services/index.js` file for nice export-import convention.
 
 **Grouping API service**
 If you create a directory called `task`. Let's see some our recommened way manage your `controller`, `model`, and `service`.
-> Note: This may look something like the MVC (Model - View - Controller) pattern. 
 
-__Model__ `src/services/task/task.model.js`
+> Note: This may look something like the MVC (Model - View - Controller) pattern.
+
+**Model** `src/services/task/task.model.js`
+
 ```js
 import { Schema, model } from 'mongoose';
 
@@ -69,7 +83,8 @@ init(); // initialize collection
 export default Task;
 ```
 
-__Service__ `src/services/task/task.service.js`
+**Service** `src/services/task/task.service.js`
+
 ```js
 import Task from './task.model';
 
@@ -96,7 +111,8 @@ export async function removeTask(id) {
 }
 ```
 
-__Controller__ `src/services/task/task.controller.js`
+**Controller** `src/services/task/task.controller.js`
+
 ```js
 import { Router } from 'express';
 import { getAllTask } from './todo.service';
@@ -120,7 +136,9 @@ export default controller; // must be
 ```
 
 #### \# Configurations
+
 You may or will often need to change or add some configurations. We suggest to do that in `src/configs`. As example, if you want to add new environment variable.
+
 ```env
 # Environment variables
 PORT=4000 # default port
@@ -128,7 +146,9 @@ DATABASE_URL=mongodb://127.0.0.1:27017/express # database for development or pro
 TEST_DATABASE_URL=mongodb://127.0.0.1:27017/express-tdd # database for only test-runner
 TOKEN=new_variable_to_use # you can add like this as you need more
 ```
+
 Now, it's time to consume this new variable through the configs. Just put the new item in `src/configs/vars.config.js`
+
 ```
 const vars = {
   port: process.env.PORT,
@@ -139,11 +159,13 @@ const vars = {
 };
 ```
 
-
 #### \# Testing
+
 TDD (Test Driven Development) is very important nowdays to become a good developer or engineer. It helps us to manage our development lifecycle easier and provides good quality.
 We have integrated the popular testing-framework for JavaScript/Nodejs `Jest`. Have used `Supertest` for making http requests. Let's an example of testing APIs.
+
 > Note: We are recommending following our distributed directory structure. As follows, we have a directory for writing all the tests in `tests` (`tests/api` for APIs).
+
 ```js
 import http from 'supertest';
 import app from '../../src/app';
@@ -166,11 +188,14 @@ describe('Tests for /task APIs', () => {
 ```
 
 ## Developer Experience
+
 This project started and developed the very first version `v1.0` by [**Mahabub**](https://github.com/mahabubx7). He used to think about express.js for building suppport APIs or hobby project's APIs using this. But, sometimes it's feels very much boaring to construct the express.js project first. So, he just started making one starter to solve this. And later it is now converted into a healthy boilerplate.
 Also, published it as an open-source and free to use for all.
 
 ## Some Recommended Tutorials
+
 There are some good & free tutorials available in youtube to learn `express.js`. To understand our boilerplate/mini-custom-framework, you should understand the core of nodejs/express.js first.
+
 - [**(Recommended)** Node.js and Express.js - Full Course](https://youtu.be/Oe421EPjeBE?t=17283)
 - [Express in Node js | Web Framework](https://youtu.be/2ojkb44XObc)
 - [Build Restful CRUD API with Node.js, Express and MongoDB](https://youtu.be/9OfL9H6AmhQ)
