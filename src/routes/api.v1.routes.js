@@ -3,7 +3,7 @@ import { serve, setup } from 'swagger-ui-express';
 import swaggerFile from '../swagger-output.json';
 import { createResponse } from '../helpers';
 import { errorHandlers } from '../middlewares';
-import { todoAPI } from '../services';
+import { todoAPI, userAPI } from '../services';
 
 const apiRouter = Router();
 
@@ -15,6 +15,7 @@ const apiRouter = Router();
 
 /// --------------------------------///
 apiRouter.use('/todo', todoAPI);
+apiRouter.use('/user', userAPI);
 /// --------------------------------///
 
 apiRouter.get('/', (req, res) => {
