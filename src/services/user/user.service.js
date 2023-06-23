@@ -6,6 +6,14 @@ export async function getSingleUser(id) {
   return user;
 }
 
+// get single user by Email
+export async function getByEmail(email) {
+  const user = await User.findOne({ email })
+    .select('-createdAt -updatedAt -__v')
+    .exec();
+  return user;
+}
+
 // get all Users
 export async function getUsers() {
   return await User.find({}).select('-createdAt -updatedAt -__v');

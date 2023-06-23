@@ -8,6 +8,7 @@ import {
   userUpdateHandler,
   userDeleteHandler,
   userGetSingleHandler,
+  useGetByEmaiil,
 } from './user.handler';
 
 const controller = Router();
@@ -35,6 +36,10 @@ controller.delete('/:id', (req, res, next) =>
 // get single User
 controller.get('/:id', (req, res, next) =>
   userGetSingleHandler(req, res).catch(next),
+);
+// get single User by Email
+controller.get('/email/:email', (req, res, next) =>
+  useGetByEmaiil(req, res).catch(next),
 );
 
 export default controller;

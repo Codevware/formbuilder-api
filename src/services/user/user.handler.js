@@ -4,6 +4,7 @@ import {
   updateUser,
   deleteUser,
   getSingleUser,
+  getByEmail,
 } from './user.service';
 
 // add User handler
@@ -53,10 +54,21 @@ const userGetSingleHandler = async (req, res) => {
   return res.status(404).json({ message: 'User not found' });
 };
 
+// Single User handler by Email
+const useGetByEmaiil = async (req, res) => {
+  const { email } = req.params;
+  const user = await getByEmail(email);
+  if (user) {
+    return res.status(200).json({ data: user });
+  }
+  return res.status(404).json({ message: 'User not found' });
+};
+
 export {
   userAddHandler,
   userGetHandler,
   userUpdateHandler,
   userDeleteHandler,
   userGetSingleHandler,
+  useGetByEmaiil,
 };
