@@ -4,7 +4,7 @@
     "node": true,
     "jest": true
   },
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -14,7 +14,7 @@
   "rules": {
     "consistent-return": "off",
     "no-console": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "no-useless-return": "off",
     "object-curly-newline": "off",
     "no-underscore-dangle": "off",

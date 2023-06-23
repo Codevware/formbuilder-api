@@ -1,21 +1,22 @@
 import { Router } from 'express';
-import { createValidator } from 'express-joi-validation';
 import { addUser, getUsers } from './user.service';
 import { createUserInput } from './user.schema';
+import ValidationGuard from '../../middlewares/validator';
 
 const controller = Router();
-const guard = createValidator({});
 
 // add User
-controller.post('/', [guard.fields(createUserInput)], async (req, res) => {
-  const { body } = req.body;
-  const user = await addUser(body);
-  if (user) {
-    return res.status(201).json({ message: 'user added successfully!' });
-  }
-
-  return; // void
-});
+controller.post(
+  '/',
+  [ValidationGuard({ reqBody: createUserInput })],
+  async (req, res, next) => {
+    const { body } = req;
+    const user = await addUser(body).catch(next);
+    if (user) {
+      return res.status(201).json({ message: 'user added successfully!' });
+    }
+  },
+);
 
 controller.get('/', async (req, res) => {
   const users = await getUsers();
