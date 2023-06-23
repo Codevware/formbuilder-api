@@ -1,6 +1,7 @@
 import { createResponse } from '../helpers';
 
-export const globalErrorHandler = (error, _, response, __) => response.status(500).render('error', {
+export const globalErrorHandler = (error, _, response, __) =>
+  response.status(500).render('error', {
     title: error.message ? error.message : 'Internal Server Error!',
     layout: 'layouts/page',
     status: 'HTTP/500',
