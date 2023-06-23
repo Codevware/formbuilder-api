@@ -7,7 +7,7 @@ import {
 } from './user.service';
 
 // add User handler
-const userAddPostHandler = async (req, res) => {
+const userAddHandler = async (req, res) => {
   const { name, email, password, role } = req.body;
   const user = await addUser({ name, email, password, role });
   if (user) {
@@ -54,7 +54,7 @@ const userGetSingleHandler = async (req, res) => {
 };
 
 export {
-  userAddPostHandler,
+  userAddHandler,
   userGetHandler,
   userUpdateHandler,
   userDeleteHandler,

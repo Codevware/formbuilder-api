@@ -3,8 +3,8 @@ import { addUser, getUsers } from './user.service';
 import { createUserInput } from './user.schema';
 import ValidationGuard from '../../middlewares/validator';
 import {
-  // userAddPostHandler,
-  // userGetHandler,
+  userAddHandler,
+  userGetHandler,
   userUpdateHandler,
   userDeleteHandler,
   userGetSingleHandler,
@@ -16,14 +16,11 @@ const controller = Router();
 controller.post(
   '/',
   [ValidationGuard({ reqBody: createUserInput })],
-  async (req, res, next) => {
-    const { body } = req;
-    const user = await addUser(body).catch(next);
-    if (user) {
-      return res.status(201).json({ message: 'user added successfully!' });
-    }
-  },
+  (req, res, next) => userAddHandler(req, res).catch(next),
 );
+
+// get all Users
+controller.get('/', (req, res, next) => userGetHandler(req, res).catch(next));
 
 // update User
 controller.put('/:id', (req, res, next) =>
